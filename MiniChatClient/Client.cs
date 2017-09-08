@@ -21,7 +21,7 @@ namespace MiniChatClient
     {
         public Client()
         {
-
+            Console.WriteLine("Client is active...");
         }
 
         public void Start()
@@ -42,14 +42,20 @@ namespace MiniChatClient
                     streamWriter.Flush();
 
                     //2.3 Read a line from your stream-reader('ReadLine()') save it in a String and name it 'line'.
-                    string line = streamReader.ReadLine();
+                    string line = streamReader.ReadLine(); //Her læser vi hvad der kommer fra Server.
 
                     //2.4 Print out the line in the console window('Console.WriteLine(line)).
                     Console.WriteLine(line);
 
                     //2.5 Until either your own line or the incomming list is "STOP".
-                    if (line == "STOP" || myLine == "STOP")
+                    if (line == "STOP") 
                     {
+                        Console.WriteLine("Server stopped itself...");
+                        socket.Close();
+                    }
+                    if (myLine == "STOP")
+                    {
+                        Console.WriteLine("I, Client, stopped the Server and closed my socket...");
                         socket.Close();
                     }
                 }

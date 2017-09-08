@@ -46,8 +46,14 @@ namespace MiniChatServer
 
                         sw.Flush();
 
-                        if (line == "STOP" || myLine == "STOP")
+                        if (line == "STOP")
                         {
+                            Console.Write("Server was stopped by Client...");
+                            server.Stop();
+                        }
+                        if (myLine == "STOP")
+                        {
+                            Console.WriteLine("Server was stopped by Server ... hmm, I stopped myself!?");
                             server.Stop();
                         }
                     }
